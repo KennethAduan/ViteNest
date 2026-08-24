@@ -59,7 +59,7 @@ const SignUpPage = () => {
     return (
         <AuthCard
             title="Create account"
-            description="Get started with Contakt."
+            description="Get started with ViteNest."
             footer={
                 <>
                     Already have an account?{' '}

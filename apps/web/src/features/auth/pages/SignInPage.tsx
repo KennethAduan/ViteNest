@@ -57,7 +57,7 @@ const SignInPage = () => {
     return (
         <AuthCard
             title="Sign in"
-            description="Welcome back to Contakt."
+            description="Welcome back to ViteNest."
             footer={
                 <>
                     No account?{' '}

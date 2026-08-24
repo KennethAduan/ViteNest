@@ -1,6 +1,6 @@
 # Web Auth Feature
 
-Client-side auth screens for Contakt, backed end-to-end by **Better Auth**.
+Client-side auth screens for ViteNest, backed end-to-end by **Better Auth**.
 There is no custom session/JWT layer — Better Auth owns identity, sessions,
 and the `User` row on both sides of the stack.
 

@@ -5,7 +5,7 @@ const EmailVerifiedPage = () => {
     return (
         <AuthCard title="Email verified" description="Your account is ready to go.">
             <Link to="/" className="text-sm underline">
-                Continue to Contakt
+                Continue to ViteNest
             </Link>
         </AuthCard>
     )

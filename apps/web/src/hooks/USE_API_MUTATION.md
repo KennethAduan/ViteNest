@@ -62,7 +62,7 @@ import {
   apiSuccessSchema,
   createUserSchema,
   userSchema,
-} from "@contakt/contracts"
+} from "@vitenest/contracts"
 import { API } from "@/lib/axios"
 import { defineApiMutation } from "@/hooks/use-api-mutation"
 
@@ -94,7 +94,7 @@ If `mutationKey` is omitted, the hook uses:
 
 ```tsx
 import { useForm } from "@tanstack/react-form"
-import { createUserSchema } from "@contakt/contracts"
+import { createUserSchema } from "@vitenest/contracts"
 import { useApiMutation } from "@/hooks/use-api-mutation"
 import { createUserMutation } from "../api/create-user.mutation"
 
@@ -232,7 +232,7 @@ create(
 
 Mapping from the Next.js action pattern:
 
-| Next.js action concern | Contakt equivalent                                           |
+| Next.js action concern | ViteNest equivalent                                          |
 | ---------------------- | ------------------------------------------------------------ |
 | `inputSchema`          | Shared Zod schema plus `ZodValidationPipe`                   |
 | auth action middleware | Better Auth session and NestJS guards/decorators             |
@@ -248,7 +248,7 @@ Route visibility, disabled buttons, and client schemas are UX controls only. Eve
 
 Before adding a mutation:
 
-- Reuse or add a public Zod schema in `@contakt/contracts`.
+- Reuse or add a public Zod schema in `@vitenest/contracts`.
 - Keep the definition inside the owning feature.
 - Use the shared `API` client; do not create another Axios instance.
 - Parse the standard API success envelope when consuming normal NestJS endpoints.

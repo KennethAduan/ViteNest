@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { API } from '@/lib/axios'
 import API_ROUTE from '@/constants/API_ROUTE'
 import { useState } from 'react'
-import type { User } from '@contakt/contracts'
+import type { User } from '@vitenest/contracts'
 import { authClient, useSession } from '@/lib/auth-client'
 
 export const Route = createFileRoute('/')({
@@ -29,7 +29,7 @@ function Index() {
         <div className="flex min-h-svh p-6">
             <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
                 <div>
-                    <h1 className="font-medium">Project ready!</h1>
+                    <h1 className="font-medium">ViteNest ready!</h1>
                     <p>You may now add components and start building.</p>
                     <p>We&apos;ve already added the button component for you.</p>
                     <Button className="mt-2" onClick={handleClick}>Button</Button>

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { createUserSchema, type CreateUserDto } from '@contakt/contracts';
+import { createUserSchema, type CreateUserDto } from '@vitenest/contracts';
 import { Roles, Session, type UserSession } from '@thallesp/nestjs-better-auth';
 import { ZodValidationPipe } from '../common/pipes/zod-validation.pipe';
 import { UserService } from './user.service';

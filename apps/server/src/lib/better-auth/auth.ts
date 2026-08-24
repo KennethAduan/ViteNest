@@ -9,7 +9,7 @@ import {
 } from '../email/email-templates';
 
 export const auth = betterAuth({
-  appName: 'Contakt',
+  appName: 'ViteNest',
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
@@ -19,7 +19,7 @@ export const auth = betterAuth({
     sendResetPassword: async ({ user, url }) => {
       await sendEmail({
         recipients: [user.email],
-        subject: 'Reset your Contakt password',
+        subject: 'Reset your ViteNest password',
         htmlContent: resetPasswordTemplate(url),
       });
     },
@@ -30,7 +30,7 @@ export const auth = betterAuth({
     sendVerificationEmail: async ({ user, url }) => {
       await sendEmail({
         recipients: [user.email],
-        subject: 'Verify your Contakt email',
+        subject: 'Verify your ViteNest email',
         htmlContent: verifyEmailTemplate(url),
       });
     },

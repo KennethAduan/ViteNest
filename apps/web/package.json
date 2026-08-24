@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
-    "@contakt/contracts": "workspace:*",
+    "@vitenest/contracts": "workspace:*",
     "@fontsource-variable/inter": "^5.3.0",
     "@tailwindcss/vite": "^4",
     "@tanstack/react-form": "^1.33.5",

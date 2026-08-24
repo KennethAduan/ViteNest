@@ -1,12 +1,19 @@
-# Contakt PH
+# ViteNest
 
-Contakt is a multi-tenant business operations platform for Philippine companies
-and organizations. This repository is the Turborepo foundation for its gradual
-migration from a frontend-heavy Firebase architecture to a React SPA backed by
-a NestJS modular monolith and PostgreSQL.
+ViteNest is an agent-ready full-stack TypeScript monorepo starter. It pairs a
+React and Vite SPA with a NestJS modular monolith, PostgreSQL, shared Zod
+contracts, and production-minded workspace tooling.
 
-Read [`docs/PROJECT_DOCS.md`](docs/PROJECT_DOCS.md) for product context,
-architecture decisions, security requirements, and the migration plan.
+See [`docs/TECH_STACK.md`](docs/TECH_STACK.md) for the implementation-level
+stack, package boundaries, data flow, and current starter scope.
+
+Repository guidance is designed for both developers and coding agents:
+
+- [`AGENTS.md`](AGENTS.md) gives Codex and other compatible agents one canonical
+  source of repository-wide guidance.
+- [`CLAUDE.md`](CLAUDE.md) directs Claude Code to those shared instructions.
+- [`.agents/skills`](.agents/skills) contains task-specific implementation and
+  review guidance usable by compatible coding agents.
 
 ## Current Stack
 
@@ -17,14 +24,14 @@ architecture decisions, security requirements, and the migration plan.
 - `packages/contracts`: shared public API schemas and types.
 - Workspace tooling: pnpm 9 and Turborepo.
 
-The project documentation includes target-state decisions that may not be
-implemented yet. For example, it discusses a future `apps/api` layout and
-Fastify, while the current backend remains `apps/server` on Express. Treat the
-checked-in code and configuration as the source of truth for current behavior.
+ViteNest is a foundation, not a finished SaaS product. Current code includes
+authentication, user management, shared contracts, and reusable frontend
+infrastructure. Product domains such as organizations, billing, and tenancy are
+left to the application built from this starter.
 
 ## Requirements
 
-- Node.js 18 or newer
+- Node.js 20.19 or newer in the 20.x line, or Node.js 22.12 or newer
 - pnpm 9
 
 Install dependencies from the repository root:
@@ -70,8 +77,8 @@ pnpm --filter server dev
 Common package-scoped checks:
 
 ```sh
-pnpm --filter @contakt/contracts check-types
-pnpm --filter @contakt/contracts build
+pnpm --filter @vitenest/contracts check-types
+pnpm --filter @vitenest/contracts build
 
 pnpm --filter web lint
 pnpm --filter web typecheck
@@ -113,8 +120,3 @@ only after it has a genuine cross-feature consumer:
 
 Do not edit `apps/web/src/routeTree.gen.ts` manually; the TanStack Router plugin
 generates it from the route files.
-
-## Agent Guidance
-
-Coding agents must read [`AGENTS.md`](AGENTS.md). Claude Code loads the same
-canonical instructions through [`CLAUDE.md`](CLAUDE.md).

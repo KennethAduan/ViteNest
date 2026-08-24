@@ -1,4 +1,4 @@
-import type { ApiSuccess } from '@contakt/contracts';
+import type { ApiSuccess } from '@vitenest/contracts';
 import {
   CallHandler,
   ExecutionContext,

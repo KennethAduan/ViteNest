@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { AuthService } from '@thallesp/nestjs-better-auth';
-import type { CreateUserDto } from '@contakt/contracts';
+import type { CreateUserDto } from '@vitenest/contracts';
 import type { auth } from '../lib/better-auth/auth';
 import { PrismaService } from '../lib/prisma/prisma.service';
 

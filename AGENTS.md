@@ -1,4 +1,4 @@
-# Contakt Agent Guide
+# ViteNest Agent Guide
 
 This file is the canonical instruction set for coding agents working in this
 repository. Keep it concise, current, and based on checked-in behavior.
@@ -7,8 +7,8 @@ repository. Keep it concise, current, and based on checked-in behavior.
 
 Before changing code:
 
-1. Read the relevant sections of `docs/PROJECT_DOCS.md` for product intent,
-   security constraints, and migration direction.
+1. Read `README.md` and any feature or package documentation relevant to the
+   task.
 2. Inspect the affected package's `package.json`, configuration, neighboring
    implementation, and tests. Current code and configuration are the source of
    truth for current behavior.
@@ -16,12 +16,9 @@ Before changing code:
 4. If the task matches a repository skill, read the corresponding
    `.agents/skills/<skill-name>/SKILL.md` before implementing.
 
-`docs/PROJECT_DOCS.md` describes both current decisions and a target migration
-state. Do not assume every target choice is already implemented. In particular,
-the current backend is `apps/server` and uses NestJS with the Express adapter;
-the document's `apps/api` and Fastify references are future direction. Do not
-rename the app or switch adapters unless the task explicitly includes that
-migration.
+The current backend is `apps/server` and uses NestJS with the Express adapter.
+Do not rename the app or switch adapters unless the task explicitly includes
+that migration.
 
 ## Repository Map
 
@@ -32,14 +29,12 @@ migration.
 - `packages/contracts`: compiled public API schemas and types shared by web and
   server. It must not contain Prisma, NestJS services, repositories, or private
   authorization logic.
-- `docs/PROJECT_DOCS.md`: product, migration, tenancy, security, and architecture
-  decisions.
 - `docs/pnpm-workspace.md`: canonical dependency-install and workspace-command
   guidance.
 - `.agents/skills`: task-specific implementation and review guidance.
 
 Use `pnpm` from the repository root. Filters use the package `name` (`web`,
-`server`, or `@contakt/contracts`), not the directory name. Keep a single root
+`server`, or `@vitenest/contracts`), not the directory name. Keep a single root
 `pnpm-lock.yaml`; never create nested lockfiles or workspace files.
 
 ## Working Method
@@ -88,7 +83,7 @@ features/<feature>/
 - Use TanStack Query for server state and the configured API/auth clients for
   network access. Do not scatter raw `fetch` or one-off Axios clients through
   components.
-- Reuse `@contakt/contracts` schemas and types when an API contract exists.
+- Reuse `@vitenest/contracts` schemas and types when an API contract exists.
 - Reuse existing shadcn primitives and semantic Tailwind tokens. Preserve
   keyboard access, responsive behavior, light/dark themes, and reduced-motion
   preferences.
@@ -101,7 +96,7 @@ features/<feature>/
   business rules in services/domain code, and persistence behind Prisma-backed
   services or repositories.
 - Validate external input at the server boundary. Prefer shared Zod request
-  schemas from `@contakt/contracts` when they are part of the public API.
+  schemas from `@vitenest/contracts` when they are part of the public API.
 - Preserve the standard success envelope produced by `TransformInterceptor`.
   Better Auth endpoints under `/api/auth` intentionally bypass that envelope.
 - Authentication, tenant membership, and permissions are separate concerns.
@@ -144,8 +139,8 @@ Use package-scoped validation for focused changes:
 
 ```sh
 # Contracts
-pnpm --filter @contakt/contracts check-types
-pnpm --filter @contakt/contracts build
+pnpm --filter @vitenest/contracts check-types
+pnpm --filter @vitenest/contracts build
 
 # Web
 pnpm --filter web lint
