@@ -1,0 +1,2 @@
+pnpm exec fallow audit --base origin/main || exit 1
+(cd apps/web && npx react-doctor@latest --scope changed --base origin/main) || exit 1

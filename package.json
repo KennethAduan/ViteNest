@@ -1,0 +1,25 @@
+{
+  "name": "contakt-ph",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "postinstall": "pnpm build:packages",
+    "build:packages": "turbo run build --filter=./packages/*",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "fallow": "^3.17.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4",
+    "turbo": "^2.10.11",
+    "typescript": "5.9.2"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

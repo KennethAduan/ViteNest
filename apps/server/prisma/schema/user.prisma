@@ -1,0 +1,20 @@
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+
+  /// Better Auth admin plugin: "user" | "admin"
+  role        String?
+  banned      Boolean?
+  banReason   String?
+  banExpires  DateTime?
+
+  @@unique([email])
+  @@map("user")
+}
