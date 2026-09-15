@@ -50,12 +50,17 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   )
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+function TableRow({
+  className,
+  variant = "default",
+  ...props
+}: React.ComponentProps<"tr"> & { variant?: "default" | "static" }) {
   return (
     <tr
       data-slot="table-row"
+      data-variant={variant}
       className={cn(
-        "border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted",
+        "border-b transition-colors has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted data-[variant=default]:hover:bg-muted/50",
         className
       )}
       {...props}
@@ -63,12 +68,17 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+function TableHead({
+  className,
+  variant = "default",
+  ...props
+}: React.ComponentProps<"th"> & { variant?: "default" | "pinned" }) {
   return (
     <th
       data-slot="table-head"
+      data-variant={variant}
       className={cn(
-        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0",
+        "h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground data-[variant=pinned]:bg-background data-[variant=pinned]:opacity-(--column-opacity) [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}
@@ -76,12 +86,17 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+function TableCell({
+  className,
+  variant = "default",
+  ...props
+}: React.ComponentProps<"td"> & { variant?: "default" | "pinned" }) {
   return (
     <td
       data-slot="table-cell"
+      data-variant={variant}
       className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0",
+        "p-2 align-middle whitespace-nowrap data-[variant=pinned]:bg-background data-[variant=pinned]:opacity-(--column-opacity) [&:has([role=checkbox])]:pr-0",
         className
       )}
       {...props}

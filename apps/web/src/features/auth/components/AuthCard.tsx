@@ -19,12 +19,14 @@ export function AuthCard({ title, description, children, footer }: AuthCardProps
         <div className="flex min-h-svh items-center justify-center p-6">
             <Card className="w-full max-w-sm">
                 <CardHeader>
-                    <CardTitle className="text-xl">{title}</CardTitle>
+                    <CardTitle>{title}</CardTitle>
                     {description && <CardDescription>{description}</CardDescription>}
                 </CardHeader>
-                <CardContent className="flex flex-col gap-4">
-                    {children}
-                    {footer && <div className="text-sm text-muted-foreground">{footer}</div>}
+                <CardContent>
+                    <div className="flex flex-col gap-4">
+                        {children}
+                        {footer && <div className="text-sm text-muted-foreground">{footer}</div>}
+                    </div>
                 </CardContent>
             </Card>
         </div>

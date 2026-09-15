@@ -44,12 +44,14 @@ function RouteComponent() {
                     <div className="text-muted-foreground text-sm">{user.email}</div>
                 </CardHeader>
                 <Separator />
-                <CardContent className="space-y-2 mt-4">
-                    <div>
-                        <div className="text-xs font-semibold text-muted-foreground uppercase mb-0.5">User ID</div>
-                        <div className="text-sm font-mono break-words">{user.id}</div>
+                <CardContent>
+                    <div className="mt-4 flex flex-col gap-2">
+                        <div>
+                            <div className="mb-0.5 text-xs font-semibold text-muted-foreground uppercase">User ID</div>
+                            <div className="text-sm font-mono break-words">{user.id}</div>
+                        </div>
+                        {/* Add more user details here as desired */}
                     </div>
-                    {/* Add more user details here as desired */}
                 </CardContent>
             </Card>
         </div>

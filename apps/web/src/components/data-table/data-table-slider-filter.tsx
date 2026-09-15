@@ -3,6 +3,11 @@ import * as React from "react"
 import type { Column } from "@/lib/tanstack-table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group"
 import { Label } from "@/components/ui/label"
 import {
   Popover,
@@ -11,7 +16,6 @@ import {
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
-import { cn } from "@/lib/utils"
 
 interface Range {
   min: number
@@ -142,11 +146,7 @@ export function DataTableSliderFilter<TData>({
     <Popover>
       <PopoverTrigger
         render={
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-dashed font-normal"
-          />
+          <Button variant="filter" size="sm" />
         }
       >
         {columnFilterValue ? (
@@ -174,7 +174,7 @@ export function DataTableSliderFilter<TData>({
           </>
         ) : null}
       </PopoverTrigger>
-      <PopoverContent align="start" className="flex w-auto flex-col gap-4">
+      <PopoverContent align="start" className="w-auto" spacing="roomy">
         <div className="flex flex-col gap-3">
           <p className="leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             {title}
@@ -183,7 +183,24 @@ export function DataTableSliderFilter<TData>({
             <Label htmlFor={`${id}-from`} className="sr-only">
               From
             </Label>
-            <div className="relative">
+            {unit ? (
+              <InputGroup className="w-24">
+                <InputGroupInput
+                  id={`${id}-from`}
+                  type="number"
+                  aria-valuemin={min}
+                  aria-valuemax={max}
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  placeholder={min.toString()}
+                  min={min}
+                  max={max}
+                  value={range[0].toString()}
+                  onChange={onFromInputChange}
+                />
+                <InputGroupAddon align="inline-end">{unit}</InputGroupAddon>
+              </InputGroup>
+            ) : (
               <Input
                 id={`${id}-from`}
                 type="number"
@@ -196,18 +213,30 @@ export function DataTableSliderFilter<TData>({
                 max={max}
                 value={range[0].toString()}
                 onChange={onFromInputChange}
-                className={cn("h-8 w-24", unit && "pr-8")}
+                className="h-8 w-24"
               />
-              {unit && (
-                <span className="absolute top-0 right-0 bottom-0 flex items-center rounded-r-md bg-accent px-2 text-sm text-muted-foreground">
-                  {unit}
-                </span>
-              )}
-            </div>
+            )}
             <Label htmlFor={`${id}-to`} className="sr-only">
               to
             </Label>
-            <div className="relative">
+            {unit ? (
+              <InputGroup className="w-24">
+                <InputGroupInput
+                  id={`${id}-to`}
+                  type="number"
+                  aria-valuemin={min}
+                  aria-valuemax={max}
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  placeholder={max.toString()}
+                  min={min}
+                  max={max}
+                  value={range[1].toString()}
+                  onChange={onToInputChange}
+                />
+                <InputGroupAddon align="inline-end">{unit}</InputGroupAddon>
+              </InputGroup>
+            ) : (
               <Input
                 id={`${id}-to`}
                 type="number"
@@ -220,14 +249,9 @@ export function DataTableSliderFilter<TData>({
                 max={max}
                 value={range[1].toString()}
                 onChange={onToInputChange}
-                className={cn("h-8 w-24", unit && "pr-8")}
+                className="h-8 w-24"
               />
-              {unit && (
-                <span className="absolute top-0 right-0 bottom-0 flex items-center rounded-r-md bg-accent px-2 text-sm text-muted-foreground">
-                  {unit}
-                </span>
-              )}
-            </div>
+            )}
           </div>
           <Label htmlFor={`${id}-slider`} className="sr-only">
             {title} slider

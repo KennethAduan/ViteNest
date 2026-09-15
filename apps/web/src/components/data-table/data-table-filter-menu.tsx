@@ -193,7 +193,6 @@ export function DataTableFilterMenu<TData>({
           aria-label="Reset all filters"
           variant="outline"
           size="icon"
-          className="size-8"
           onClick={onFiltersReset}
         >
           <X />
@@ -204,9 +203,8 @@ export function DataTableFilterMenu<TData>({
           render={
             <Button
               aria-label="Open filter command menu"
-              variant="outline"
+              variant="outline-muted"
               size={filters.length > 0 ? "icon" : "sm"}
-              className={cn(filters.length > 0 && "size-8", "h-8 font-normal")}
               ref={triggerRef}
               onKeyDown={onTriggerKeyDown}
               disabled={disabled}
@@ -217,7 +215,8 @@ export function DataTableFilterMenu<TData>({
           {filters.length > 0 ? null : "Filter"}
         </PopoverTrigger>
         <PopoverContent
-          className="w-full max-w-(--available-width) p-0"
+          className="w-full max-w-(--available-width)"
+          spacing="none"
           {...props}
         >
           <Command loop className="[&_[cmdk-input-wrapper]_svg]:hidden">
@@ -350,7 +349,7 @@ function DataTableFilterItem<TData>({
       >
         <SelectTrigger
           aria-controls={operatorListboxId}
-          className="h-8 rounded-none border-r-0 px-2.5 data-size:h-8 [&_svg]:hidden"
+          variant="segment"
         >
           <SelectValue placeholder={filter.operator} />
         </SelectTrigger>
@@ -372,9 +371,9 @@ function DataTableFilterItem<TData>({
       })}
       <Button
         aria-controls={filterItemId}
-        variant="ghost"
+        variant="segment-end"
         size="sm"
-        className="h-full rounded-none rounded-r-md border border-l-0 px-1.5 font-normal dark:bg-input/30"
+        className="h-full"
         onClick={() => onFilterRemove(filter.filterId)}
         onKeyDown={onItemKeyDown}
       >
@@ -499,7 +498,7 @@ function renderMenuTextFilter<TData>({
       type={isNumber ? "number" : "text"}
       inputMode={isNumber ? "numeric" : undefined}
       placeholder={column.columnDef.meta?.placeholder ?? "Enter value..."}
-      className="h-full w-24 rounded-none px-1.5"
+      className="h-full w-24"
       defaultValue={typeof filter.value === "string" ? filter.value : ""}
       onChange={(event) =>
         onFilterUpdate(filter.filterId, { value: event.target.value })
@@ -530,7 +529,7 @@ function renderMenuBooleanFilter<TData>({
       <SelectTrigger
         id={inputId}
         aria-controls={inputListboxId}
-        className="rounded-none bg-transparent px-1.5 py-0.5 [&_svg]:hidden"
+        variant="compact"
       >
         <SelectValue placeholder={filter.value ? "True" : "False"} />
       </SelectTrigger>
@@ -566,9 +565,9 @@ function renderMenuSelectFilter<TData>({
           <Button
             id={inputId}
             aria-controls={inputListboxId}
-            variant="ghost"
+            variant="segment-middle"
             size="sm"
-            className="h-full min-w-16 rounded-none border px-1.5 font-normal dark:bg-input/30"
+            className="h-full min-w-16"
           />
         }
       >
@@ -600,7 +599,7 @@ function renderMenuSelectFilter<TData>({
           </>
         )}
       </PopoverTrigger>
-      <PopoverContent id={inputListboxId} align="start" className="w-48 p-0">
+      <PopoverContent id={inputListboxId} align="start" className="w-48" spacing="none">
         <Command>
           <CommandInput placeholder="Search options..." />
           <CommandList>
@@ -661,19 +660,16 @@ function renderMenuDateFilter<TData>({
           <Button
             id={inputId}
             aria-controls={inputListboxId}
-            variant="ghost"
+            variant="segment-middle"
             size="sm"
-            className={cn(
-              "h-full rounded-none border px-1.5 font-normal dark:bg-input/30",
-              !filter.value && "text-muted-foreground"
-            )}
+            className="h-full"
           />
         }
       >
         <CalendarIcon className="size-3.5" />
-        <span className="truncate">{displayValue}</span>
+        <span className={cn("truncate", !filter.value && "text-muted-foreground")}>{displayValue}</span>
       </PopoverTrigger>
-      <PopoverContent id={inputListboxId} align="start" className="w-auto p-0">
+      <PopoverContent id={inputListboxId} align="start" className="w-auto" spacing="none">
         <FilterDateCalendars
           filter={filter}
           dateValue={dateValue}

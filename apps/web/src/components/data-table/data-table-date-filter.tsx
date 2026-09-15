@@ -246,11 +246,7 @@ export function DataTableDateFilter<TData>({
     <Popover open={open} onOpenChange={handleOpenChange}>
       <PopoverTrigger
         render={
-          <Button
-            variant="outline"
-            size="sm"
-            className="border-dashed font-normal"
-          />
+          <Button variant="filter" size="sm" />
         }
       >
         {hasValue ? (
@@ -267,7 +263,7 @@ export function DataTableDateFilter<TData>({
         )}
         {label}
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent className="w-auto" spacing="none" align="start">
         {multiple ? (
           <Calendar
             autoFocus

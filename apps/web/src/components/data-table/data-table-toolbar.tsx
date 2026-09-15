@@ -9,6 +9,11 @@ import { DataTableViewOptions } from "@/components/data-table/data-table-view-op
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group"
 import { cn } from "@/lib/utils"
 
 interface DataTableToolbarProps<TData> extends React.ComponentProps<"div"> {
@@ -50,9 +55,9 @@ export function DataTableToolbar<TData>({
         {isFiltered && (
           <Button
             aria-label="Reset filters"
-            variant="outline"
+            variant="filter"
             size="sm"
-            className="w-full border-dashed sm:w-auto"
+            className="w-full sm:w-auto"
             onClick={onReset}
           >
             <X />
@@ -87,22 +92,30 @@ function renderTextFilter<TData>({ column }: DataTableToolbarFilterProps<TData>)
 // fallow-ignore-next-line complexity
 function renderNumberFilter<TData>({ column }: DataTableToolbarFilterProps<TData>) {
   const meta = column.columnDef.meta
+  if (meta?.unit) {
+    return (
+      <InputGroup className="w-full sm:w-30">
+        <InputGroupInput
+          type="number"
+          inputMode="numeric"
+          placeholder={meta.placeholder ?? meta.label}
+          value={(column.getFilterValue() as string | undefined) ?? ""}
+          onChange={(e) => column.setFilterValue(e.target.value)}
+        />
+        <InputGroupAddon align="inline-end">{meta.unit}</InputGroupAddon>
+      </InputGroup>
+    )
+  }
+
   return (
-    <div className="relative">
-      <Input
-        type="number"
-        inputMode="numeric"
-        placeholder={meta?.placeholder ?? meta?.label}
-        value={(column.getFilterValue() as string | undefined) ?? ""}
-        onChange={(e) => column.setFilterValue(e.target.value)}
-        className={cn("h-8 w-full sm:w-[120px]", meta?.unit && "pr-8")}
-      />
-      {meta?.unit && (
-        <span className="absolute top-0 right-0 bottom-0 flex items-center rounded-r-md bg-accent px-2 text-sm text-muted-foreground">
-          {meta.unit}
-        </span>
-      )}
-    </div>
+    <Input
+      type="number"
+      inputMode="numeric"
+      placeholder={meta?.placeholder ?? meta?.label}
+      value={(column.getFilterValue() as string | undefined) ?? ""}
+      onChange={(e) => column.setFilterValue(e.target.value)}
+      className="h-8 w-full sm:w-30"
+    />
   )
 }
 

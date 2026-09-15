@@ -52,13 +52,9 @@ function DataTableFilterFieldSelector<TData>({
         render={
           <Button
             aria-controls={listboxId}
-            variant={isMenu ? "ghost" : "outline"}
+            variant={isMenu ? "segment-start" : "outline-muted"}
             size="sm"
-            className={
-              isMenu
-                ? "rounded-none rounded-l-md border border-r-0 font-normal dark:bg-input/30"
-                : "w-32 justify-between rounded font-normal"
-            }
+            className={isMenu ? undefined : "w-32 justify-between"}
           />
         }
       >
@@ -73,7 +69,8 @@ function DataTableFilterFieldSelector<TData>({
       <PopoverContent
         id={listboxId}
         align="start"
-        className={isMenu ? "w-48 p-0" : "w-40 p-0"}
+        className={isMenu ? "w-48" : "w-40"}
+        spacing="none"
       >
         <Command loop={isMenu}>
           <CommandInput placeholder="Search fields..." />

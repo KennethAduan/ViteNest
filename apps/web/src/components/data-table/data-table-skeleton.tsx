@@ -44,7 +44,7 @@ export function DataTableSkeleton({
         <div className="flex flex-1 items-center gap-2">
           {filterCount > 0
             ? Array.from({ length: filterCount }).map((__, i) => (
-                <Skeleton key={i} className="h-7 w-18 border-dashed" />
+                <Skeleton key={i} className="h-7 w-18" />
               ))
             : null}
         </div>
@@ -56,14 +56,17 @@ export function DataTableSkeleton({
         <Table>
           <TableHeader>
             {Array.from({ length: 1 }).map((__, i) => (
-              <TableRow key={i} className="hover:bg-transparent">
+              <TableRow key={i} variant="static">
                 {Array.from({ length: columnCount }).map((___, j) => (
                   <TableHead
                     key={j}
+                    className="w-(--cell-width) min-w-(--cell-min-width)"
                     style={{
-                      width: cozyCellWidths[j],
-                      minWidth: shrinkZero ? cozyCellWidths[j] : "auto",
-                    }}
+                      "--cell-width": cozyCellWidths[j],
+                      "--cell-min-width": shrinkZero
+                        ? cozyCellWidths[j]
+                        : "auto",
+                    } as React.CSSProperties}
                   >
                     <Skeleton className="h-6 w-full" />
                   </TableHead>
@@ -73,14 +76,17 @@ export function DataTableSkeleton({
           </TableHeader>
           <TableBody>
             {Array.from({ length: rowCount }).map((__, i) => (
-              <TableRow key={i} className="hover:bg-transparent">
+              <TableRow key={i} variant="static">
                 {Array.from({ length: columnCount }).map((___, j) => (
                   <TableCell
                     key={j}
+                    className="w-(--cell-width) min-w-(--cell-min-width)"
                     style={{
-                      width: cozyCellWidths[j],
-                      minWidth: shrinkZero ? cozyCellWidths[j] : "auto",
-                    }}
+                      "--cell-width": cozyCellWidths[j],
+                      "--cell-min-width": shrinkZero
+                        ? cozyCellWidths[j]
+                        : "auto",
+                    } as React.CSSProperties}
                   >
                     <Skeleton className="h-6 w-full" />
                   </TableCell>
