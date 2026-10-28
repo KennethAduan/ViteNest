@@ -2,7 +2,10 @@ import { createParamDecorator } from '@nestjs/common';
 
 export const AllowAnonymous = () => () => undefined;
 export const OptionalAuth = () => () => undefined;
-export const Roles = (_roles: string[]) => () => undefined;
+export const Roles = (_roles: string[]) => {
+  void _roles;
+  return () => undefined;
+};
 export const Session = createParamDecorator(() => undefined);
 
 export class AuthService<T = unknown> {
