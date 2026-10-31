@@ -12,7 +12,7 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "fallow": "^3.37.0",
+    "fallow": "^3.38.0",
     "husky": "^9.1.7",
     "prettier": "^3.9.10",
     "turbo": "^2.11.10",
@@ -21,5 +21,9 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
-  }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
